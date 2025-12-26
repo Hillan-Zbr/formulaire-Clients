@@ -20,7 +20,8 @@ cloudinary.config({
 });
 
 // Configuration Multer (stockage temporaire)
-const upload = multer({ dest: 'uploads/' });
+// On utilise /tmp/ pour être sûr que le dossier existe sur Render
+const upload = multer({ dest: '/tmp/' });
 
 // Middleware
 app.use(cors());
@@ -47,7 +48,7 @@ app.post('/api/submissions', upload.fields([
   { name: 'proofOfAddress', maxCount: 1 }
 ]), async (req, res) => {
   try {
-    const files = req.files;
+    const files = req.files || {}; // Sécurité anti-crash
     const body = req.body;
 
     let idCardUrl = '';
