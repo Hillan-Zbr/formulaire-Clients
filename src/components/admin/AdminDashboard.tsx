@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Submission } from '../../types';
-import { Trash2, FileText, ArrowLeft } from 'lucide-react';
+import { Trash2, FileText, ArrowLeft, ExternalLink } from 'lucide-react';
 import { API_URL } from '../../config';
 
 interface AdminDashboardProps {
@@ -74,12 +74,26 @@ export const AdminDashboard = ({ onBack }: AdminDashboardProps) => {
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex items-center text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded-lg">
                   <FileText className="w-4 h-4 mr-2 text-blue-500" />
-                  <span className="truncate max-w-[150px]" title={sub.idCardName}>{sub.idCardName}</span>
+                  {sub.idCardUrl ? (
+                    <a href={sub.idCardUrl} target="_blank" rel="noopener noreferrer" className="truncate max-w-[150px] hover:text-blue-600 hover:underline flex items-center">
+                      {sub.idCardName || "Carte d'identité"}
+                      <ExternalLink className="w-3 h-3 ml-1" />
+                    </a>
+                  ) : (
+                    <span className="truncate max-w-[150px]" title={sub.idCardName}>{sub.idCardName}</span>
+                  )}
                 </div>
                 {sub.proofOfAddressName && (
                   <div className="flex items-center text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded-lg">
                     <FileText className="w-4 h-4 mr-2 text-purple-500" />
-                    <span className="truncate max-w-[150px]" title={sub.proofOfAddressName}>{sub.proofOfAddressName}</span>
+                    {sub.proofOfAddressUrl ? (
+                      <a href={sub.proofOfAddressUrl} target="_blank" rel="noopener noreferrer" className="truncate max-w-[150px] hover:text-purple-600 hover:underline flex items-center">
+                        {sub.proofOfAddressName || "Justificatif"}
+                        <ExternalLink className="w-3 h-3 ml-1" />
+                      </a>
+                    ) : (
+                      <span className="truncate max-w-[150px]" title={sub.proofOfAddressName}>{sub.proofOfAddressName}</span>
+                    )}
                   </div>
                 )}
               </div>

@@ -7,12 +7,19 @@ export interface FormData {
   proofOfAddress: File | null;
 }
 
-export interface Submission extends FormData {
+export interface Submission {
   id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  birthDate: string;
   submittedAt: string;
-  // Pour le stockage, nous ne stockerons que les noms de fichiers car localStorage ne gère pas les objets File
+  // Noms pour l'affichage
   idCardName: string;
   proofOfAddressName: string;
+  // URLs Cloudinary (Optionnel car anciennes soumissions n'en ont pas)
+  idCardUrl?: string;
+  proofOfAddressUrl?: string;
 }
 
 export type FileStatus = 'idle' | 'analyzing' | 'success' | 'error';
@@ -22,4 +29,3 @@ export interface FileState {
   status: FileStatus;
   message?: string;
 }
-

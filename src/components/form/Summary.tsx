@@ -32,15 +32,31 @@ export const Summary = ({ data, onBack, onSubmit }: SummaryProps) => {
         proofOfAddressName: data.proofOfAddress?.name || '',
       };
 
-      // On prépare les données pour l'API (on enlève les objets File)
-      const apiData = { ...submission, idCard: null, proofOfAddress: null };
+      // Préparation du FormData pour l'envoi de fichiers
+      const formData = new FormData();
+      formData.append('firstName', data.firstName);
+      formData.append('lastName', data.lastName);
+      formData.append('email', data.email);
+      formData.append('birthDate', data.birthDate);
+      formData.append('id', crypto.randomUUID());
+
+      if (data.idCard) {
+        console.log("Ajout idCard au FormData:", data.idCard.name, data.idCard.size); // Debug
+        formData.append('idCard', data.idCard);
+      } else {
+        console.error("ERREUR: data.idCard est vide !"); // Debug
+      }
+      
+      if (data.proofOfAddress) {
+        formData.append('proofOfAddress', data.proofOfAddress);
+      }
+
+      console.log("Envoi de la requête..."); // Debug
 
       const response = await fetch(`${API_URL}/api/submissions`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(apiData),
+        // Pas de Header Content-Type, le navigateur le mettra automatiquement avec le boundary multipart
+        body: formData,
       });
 
       if (!response.ok) {
