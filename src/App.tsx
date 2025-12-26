@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Layout } from './components/layout/Layout';
 import { Stepper } from './components/form/Stepper';
 import { PersonalInfo } from './components/form/PersonalInfo';
