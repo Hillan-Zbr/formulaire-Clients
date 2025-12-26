@@ -59,15 +59,20 @@ app.post('/api/submissions', upload.fields([
     // Upload Carte d'identité (Obligatoire)
     if (files['idCard'] && files['idCard'][0]) {
       const file = files['idCard'][0];
+      console.log("Tentative upload Cloudinary pour:", file.originalname); // Log de debug
+      
       const result = await cloudinary.uploader.upload(file.path, {
         folder: 'formulaire_clients',
         resource_type: 'auto'
       });
+      console.log("Upload réussi:", result.secure_url); // Log de succès
+      
       idCardUrl = result.secure_url;
       idCardName = file.originalname;
       // Nettoyage du fichier temporaire
       fs.unlinkSync(file.path);
     } else {
+      console.log("Erreur: Fichier idCard manquant"); // Log d'erreur
       return res.status(400).json({ message: "La carte d'identité est obligatoire." });
     }
 
