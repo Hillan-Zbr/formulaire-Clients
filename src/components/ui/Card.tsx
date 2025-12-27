@@ -9,7 +9,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={cn(
-          "rounded-xl border border-gray-200 bg-white text-gray-950 shadow-sm",
+          "rounded-2xl border border-white/50 bg-white/80 backdrop-blur-sm text-slate-950 shadow-xl shadow-slate-200/50",
           className
         )}
         {...props}
@@ -19,4 +19,3 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 );
 
 Card.displayName = 'Card';
-
