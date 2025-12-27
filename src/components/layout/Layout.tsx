@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 relative overflow-hidden selection:bg-brand-100 selection:text-brand-900">
+    <div className="min-h-screen bg-white font-sans text-slate-900 relative overflow-hidden selection:bg-brand-100 selection:text-brand-900">
       {/* Background Decoratif */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-brand-200/30 blur-[100px]" />
