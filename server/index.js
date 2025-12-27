@@ -59,13 +59,17 @@ app.post('/api/submissions', upload.fields([
     // Upload Carte d'identité (Obligatoire)
     if (files['idCard'] && files['idCard'][0]) {
       const file = files['idCard'][0];
-      console.log("Tentative upload Cloudinary pour:", file.originalname); // Log de debug
-      
+      console.log(`Traitement idCard: ${file.originalname} (${file.size} bytes)`); // Log taille
+
       const result = await cloudinary.uploader.upload(file.path, {
         folder: 'formulaire_clients',
-        resource_type: 'auto'
+        resource_type: 'auto',
+        use_filename: true, // Garder le nom d'origine
+        unique_filename: false, // Ne pas ajouter de caractères aléatoires si possible
+        overwrite: true
       });
-      console.log("Upload réussi:", result.secure_url); // Log de succès
+      
+      console.log("Cloudinary URL:", result.secure_url);
       
       idCardUrl = result.secure_url;
       idCardName = file.originalname;
@@ -79,10 +83,16 @@ app.post('/api/submissions', upload.fields([
     // Upload Justificatif (Optionnel)
     if (files['proofOfAddress'] && files['proofOfAddress'][0]) {
       const file = files['proofOfAddress'][0];
+      console.log(`Traitement proofOfAddress: ${file.originalname} (${file.size} bytes)`);
+
       const result = await cloudinary.uploader.upload(file.path, {
         folder: 'formulaire_clients',
-        resource_type: 'auto'
+        resource_type: 'auto',
+        use_filename: true,
+        unique_filename: false,
+        overwrite: true
       });
+      
       proofOfAddressUrl = result.secure_url;
       proofOfAddressName = file.originalname;
       fs.unlinkSync(file.path);
