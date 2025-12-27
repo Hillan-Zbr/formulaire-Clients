@@ -17,7 +17,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       {/* Indicateur de version */}
       <footer className="fixed bottom-2 right-4 z-50">
         <p className="text-xs text-slate-400/80 font-mono">
-          v1.2.0 (Design Update)
+          v1.2.1 (Standard Colors)
         </p>
       </footer>
     </div>
