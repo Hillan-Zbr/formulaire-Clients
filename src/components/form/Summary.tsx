@@ -24,14 +24,6 @@ export const Summary = ({ data, onBack, onSubmit }: SummaryProps) => {
     
     // Appel API vers le Backend
     try {
-      const submission: Submission = {
-        ...data,
-        id: crypto.randomUUID(), // Sera remplacé/ignoré par Mongo, mais utile pour l'instant
-        submittedAt: new Date().toISOString(),
-        idCardName: data.idCard?.name || '',
-        proofOfAddressName: data.proofOfAddress?.name || '',
-      };
-
       // Préparation du FormData pour l'envoi de fichiers
       const formData = new FormData();
       formData.append('firstName', data.firstName);
