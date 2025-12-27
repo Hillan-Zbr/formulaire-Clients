@@ -8,6 +8,7 @@ import { AdminDashboard } from './components/admin/AdminDashboard';
 import { FormData } from './types';
 import { Button } from './components/ui/Button';
 import { Shield } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const INITIAL_DATA: FormData = {
   firstName: '',
@@ -49,14 +50,14 @@ function App() {
     <Layout>
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Formulaire Clients</h1>
-          <p className="text-gray-500 mt-1">Soumettez votre dossier en quelques clics</p>
+          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Formulaire Clients</h1>
+          <p className="text-slate-500 mt-1">Soumettez votre dossier en quelques clics</p>
         </div>
         <Button 
           variant="ghost" 
           size="sm" 
           onClick={() => setIsAdminMode(true)}
-          className="text-gray-400 hover:text-gray-600"
+          className="text-slate-400 hover:text-brand-600 hover:bg-brand-50"
         >
           <Shield className="w-4 h-4 mr-2" />
           Admin
@@ -66,30 +67,56 @@ function App() {
       <Stepper currentStep={step} steps={STEPS} />
 
       <div className="mt-8">
-        {step === 1 && (
-          <PersonalInfo 
-            data={formData} 
-            onUpdate={updateData} 
-            onNext={nextStep} 
-          />
-        )}
-        
-        {step === 2 && (
-          <DocumentUpload 
-            data={formData} 
-            onUpdate={updateData} 
-            onNext={nextStep} 
-            onBack={prevStep} 
-          />
-        )}
-        
-        {step === 3 && (
-          <Summary 
-            data={formData} 
-            onBack={prevStep} 
-            onSubmit={handleReset} 
-          />
-        )}
+        <AnimatePresence mode="wait">
+          {step === 1 && (
+            <motion.div
+              key="step1"
+              initial={{ x: 10, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -10, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <PersonalInfo 
+                data={formData} 
+                onUpdate={updateData} 
+                onNext={nextStep} 
+              />
+            </motion.div>
+          )}
+          
+          {step === 2 && (
+            <motion.div
+              key="step2"
+              initial={{ x: 10, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -10, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <DocumentUpload 
+                data={formData} 
+                onUpdate={updateData} 
+                onNext={nextStep} 
+                onBack={prevStep} 
+              />
+            </motion.div>
+          )}
+          
+          {step === 3 && (
+            <motion.div
+              key="step3"
+              initial={{ x: 10, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -10, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Summary 
+                data={formData} 
+                onBack={prevStep} 
+                onSubmit={handleReset} 
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </Layout>
   );
