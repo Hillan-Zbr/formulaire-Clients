@@ -50,8 +50,8 @@ function App() {
     <Layout>
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Formulaire Clients</h1>
-          <p className="text-slate-500 mt-1">Soumettez votre dossier en quelques clics</p>
+          <h1 className="text-3xl font-bold text-white tracking-tight">Formulaire Clients</h1>
+          <p className="text-slate-300 mt-1">Soumettez votre dossier en quelques clics</p>
         </div>
         <Button 
           variant="ghost" 
