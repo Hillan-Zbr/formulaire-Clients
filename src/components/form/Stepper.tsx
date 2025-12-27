@@ -16,7 +16,7 @@ export const Stepper = ({ currentStep, steps }: StepperProps) => {
         
         {/* Barre de progression colorée (Animée) */}
         <motion.div 
-          className="absolute left-0 top-1/2 -z-10 h-1 -translate-y-1/2 bg-brand-600 rounded-full origin-left"
+          className="absolute left-0 top-1/2 -z-10 h-1 -translate-y-1/2 bg-blue-600 rounded-full origin-left"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: (currentStep - 1) / (steps.length - 1) }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -34,8 +34,8 @@ export const Stepper = ({ currentStep, steps }: StepperProps) => {
                 initial={false}
                 animate={{
                   scale: isCurrent ? 1.1 : 1,
-                  backgroundColor: isCompleted || isCurrent ? '#0284c7' : '#ffffff', // brand-600 vs white
-                  borderColor: isCompleted || isCurrent ? '#0284c7' : '#cbd5e1', // brand-600 vs slate-300
+                  backgroundColor: isCompleted || isCurrent ? '#2563eb' : '#ffffff', // blue-600 vs white
+                  borderColor: isCompleted || isCurrent ? '#2563eb' : '#cbd5e1', // blue-600 vs slate-300
                 }}
                 transition={{ duration: 0.3 }}
                 className={cn(
@@ -52,7 +52,7 @@ export const Stepper = ({ currentStep, steps }: StepperProps) => {
               <span
                 className={cn(
                   "mt-3 text-sm font-medium transition-colors duration-300",
-                  isCurrent ? "text-brand-700" : isCompleted ? "text-brand-600" : "text-slate-400"
+                  isCurrent ? "text-blue-700" : isCompleted ? "text-blue-600" : "text-slate-400"
                 )}
               >
                 {step}

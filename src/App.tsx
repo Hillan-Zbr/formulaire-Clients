@@ -57,7 +57,7 @@ function App() {
           variant="ghost" 
           size="sm" 
           onClick={() => setIsAdminMode(true)}
-          className="text-slate-400 hover:text-brand-600 hover:bg-brand-50"
+          className="text-slate-400 hover:text-blue-600 hover:bg-blue-50"
         >
           <Shield className="w-4 h-4 mr-2" />
           Admin
