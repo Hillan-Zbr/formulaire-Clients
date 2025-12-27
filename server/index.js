@@ -64,8 +64,9 @@ app.post('/api/submissions', upload.fields([
       const result = await cloudinary.uploader.upload(file.path, {
         folder: 'formulaire_clients',
         resource_type: 'auto',
-        use_filename: true, // Garder le nom d'origine
-        unique_filename: false, // Ne pas ajouter de caractères aléatoires si possible
+        filename_override: file.originalname, // Force le vrai nom (ex: contrat.pdf)
+        use_filename: true,
+        unique_filename: false,
         overwrite: true
       });
       
