@@ -13,6 +13,13 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <main className="container mx-auto px-4 py-12 max-w-4xl relative z-10">
         {children}
       </main>
+
+      {/* Indicateur de version */}
+      <footer className="fixed bottom-2 right-4 z-50">
+        <p className="text-xs text-slate-400/80 font-mono">
+          v1.2.0 (Design Update)
+        </p>
+      </footer>
     </div>
   );
 };
