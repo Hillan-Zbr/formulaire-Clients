@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
-import { FormData, Submission } from '../../types';
+import { UserFormData } from '../../types';
 import { FileText, User, Calendar, Mail, CheckCircle, Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { API_URL } from '../../config';
 
 interface SummaryProps {
-  data: FormData;
+  data: UserFormData;
   onBack: () => void;
   onSubmit: () => void;
 }

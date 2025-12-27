@@ -5,12 +5,12 @@ import { PersonalInfo } from './components/form/PersonalInfo';
 import { DocumentUpload } from './components/form/DocumentUpload';
 import { Summary } from './components/form/Summary';
 import { AdminDashboard } from './components/admin/AdminDashboard';
-import { FormData } from './types';
+import { UserFormData } from './types';
 import { Button } from './components/ui/Button';
 import { Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const INITIAL_DATA: FormData = {
+const INITIAL_DATA: UserFormData = {
   firstName: '',
   lastName: '',
   email: '',
@@ -23,10 +23,10 @@ const STEPS = ['Informations', 'Documents', 'Validation'];
 
 function App() {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<FormData>(INITIAL_DATA);
+  const [formData, setFormData] = useState<UserFormData>(INITIAL_DATA);
   const [isAdminMode, setIsAdminMode] = useState(false);
 
-  const updateData = (newData: Partial<FormData>) => {
+  const updateData = (newData: Partial<UserFormData>) => {
     setFormData(prev => ({ ...prev, ...newData }));
   };
 

@@ -2,12 +2,12 @@ import React, { useState, useRef } from 'react';
 import { Upload, CheckCircle, AlertCircle, Loader2, X } from 'lucide-react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
-import { FormData, FileStatus } from '../../types';
+import { UserFormData, FileStatus } from '../../types';
 import { cn } from '../../lib/utils';
 
 interface DocumentUploadProps {
-  data: FormData;
-  onUpdate: (data: Partial<FormData>) => void;
+  data: UserFormData;
+  onUpdate: (data: Partial<UserFormData>) => void;
   onNext: () => void;
   onBack: () => void;
 }

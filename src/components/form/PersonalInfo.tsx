@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import { Card } from '../ui/Card';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
-import { FormData } from '../../types';
+import { UserFormData } from '../../types';
 
 interface PersonalInfoProps {
-  data: FormData;
-  onUpdate: (data: Partial<FormData>) => void;
+  data: UserFormData;
+  onUpdate: (data: Partial<UserFormData>) => void;
   onNext: () => void;
 }
 
 export const PersonalInfo = ({ data, onUpdate, onNext }: PersonalInfoProps) => {
-  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
-  const [touched, setTouched] = useState<Partial<Record<keyof FormData, boolean>>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof UserFormData, string>>>({});
+  const [touched, setTouched] = useState<Partial<Record<keyof UserFormData, boolean>>>({});
 
   // Validation simple
-  const validate = (fieldName: keyof FormData, value: string) => {
+  const validate = (fieldName: keyof UserFormData, value: string) => {
     let error = '';
     
     switch (fieldName) {
@@ -42,10 +42,10 @@ export const PersonalInfo = ({ data, onUpdate, onNext }: PersonalInfoProps) => {
     const { name, value } = e.target;
     onUpdate({ [name]: value });
     
-    if (touched[name as keyof FormData]) {
+    if (touched[name as keyof UserFormData]) {
       setErrors(prev => ({
         ...prev,
-        [name]: validate(name as keyof FormData, value)
+        [name]: validate(name as keyof UserFormData, value)
       }));
     }
   };
@@ -55,7 +55,7 @@ export const PersonalInfo = ({ data, onUpdate, onNext }: PersonalInfoProps) => {
     setTouched(prev => ({ ...prev, [name]: true }));
     setErrors(prev => ({
       ...prev,
-      [name]: validate(name as keyof FormData, value)
+      [name]: validate(name as keyof UserFormData, value)
     }));
   };
 
